@@ -1,0 +1,120 @@
+<h1 class="headerStyle">REST API List</h1>
+ <section class="flat">
+    <button onclick="doAdd()">ADD New File</button>
+</section>
+<table>
+  <thead class="thead-style">
+    <tr>
+      <td style='width:10px'>No</td>
+      <td>Thumbnile</td>
+      <td>File Name</td>
+      <td>Description</td>
+      <td style="width:150px;text-align:center">Operations</td>
+    </tr>
+
+  </thead>
+  <tbody id="list-data"></tbody>
+</table>
+
+<script>
+
+var url = "{{ url('rest_api') }}";
+var contentType = "application/hal+json";
+var urlFiles = "{{ name }}";
+  (function () {
+    'use strict';
+
+ function doList(){
+
+  var result = "";
+  jQuery.ajax({
+      type: "GET",
+      url: url+"/list?_format=hal_json",
+      cache: false,
+      beforeSend: function(data) {
+        //Loading Modal
+
+      },
+       headers:{
+          "Content-Type":contentType,
+        },
+      success: function(data){
+        var obj =  data;
+         if(obj.data !== undefined){
+             for(var i=0;i<obj.data.length;i++){
+              var no = i+1;
+              var id = obj.data[i].flid;
+              var filename =  obj.data[i].filename;
+              var description =  obj.data[i].description;
+              var media =   obj.data[i].uri;
+              var resultMedia = "";
+                if(media != ""){
+                   media = media.split("//");
+                  resultMedia = "<img  src='"+urlFiles+media[1]+"' style='width:50px !important;border: 1px solid #ddd; border-radius: 4px; padding: 5px;' class='img-thumbnail' alt=''  onclick='window.open(this.src)'>";
+                }
+              var editAct = "<button type='button' class='edit'  onclick='doEdit("+id+");'>EDIT</button>";
+              var deleteAct = "<button type='button' class='delete'  onclick='doDelete("+id+");'>DELETE</button>";
+              result = result + "<tr><td ><input type='hidden' id='no"+id+"' value="+no+">"+no+"</td><td>"+resultMedia+"</td><td>"+filename+"</td><td>"+description+"</td><td style='width:150px;text-align:center'><section class='operation'> "+editAct+" "+deleteAct+" </section>  </td></tr>";
+            }
+         }else{
+            result = result +"<tr><td colspan='5' style='color:grey;'><center><em>Rows is empty..</em></center></td></tr>";
+         }
+
+        jQuery("#list-data").html(result);
+      },
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+          //Error Modal
+        alert(textStatus + " " + errorThrown);
+      }
+    });
+
+     }
+
+ doList();
+ })();
+
+
+  function doDelete(id){
+      var no = jQuery("#no"+id).val();
+  		var msg = confirm("Are you sure delete item no "+no+" ?");
+  		if(msg == true){
+  			if(id != null){
+
+  			jQuery.ajax({
+  				headers:{
+  					"Content-Type":contentType,
+   				},
+  				method: "DELETE",
+  				url: url+"/"+id+"/delete?_format=hal_json",
+  				cache: false,
+  				beforeSend: function(xhr) {
+
+  				},
+  				success: function(data){
+            alert("Data has been deleted");
+  					window.location.reload();
+  				},
+  				error: function (XMLHttpRequest, textStatus, errorThrown) {
+  	 				//Error Modal
+            var err = JSON.parse(XMLHttpRequest.responseText);
+
+            alert(textStatus + ": \n " + err.message);
+  				}
+  			});
+  		}
+  		}
+
+  }
+
+
+  function doAdd(){
+  	window.location.href= url+"/addForm";
+  }
+
+  function doEdit(id){
+  	window.location.href= url+"/editForm/"+id;
+  }
+
+
+
+</script>

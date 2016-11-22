@@ -1,0 +1,6 @@
+rest_api.admin:
+  title: 'REST API '
+  description: 'service REST API with form CRUD for managed your data'
+  parent: system.admin_config_services
+  route_name: rest_api
+  weight: 100

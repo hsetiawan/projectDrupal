@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * @file
+ * Containes the database tables required by the REST API module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function rest_api_schema() {
+  $schema = array();
+
+  $schema['file_store'] = array(
+    'description' => 'Managed Data',
+    'fields' => array(
+      'flid' => array(
+        'description' => 'The primary key of this table.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'UUID' => array(
+        'description' => 'The unique entity identifier.',
+        'type' => 'varchar',
+        'length' => 60,
+        'not null' => TRUE
+      ),
+      'filename' => array(
+        'description' => 'file name of file uploaded',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+
+      'description' => array(
+        'description' => 'description of file uploaded',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+
+      'uri' => array(
+        'description' => 'URL path file',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+
+
+      'filemime' => array(
+        'description' => 'filemime',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+
+      'filesize' => array(
+        'description' => 'filesize describe',
+        'type' => 'int',
+        'size' =>  'big',
+        'not null' => FALSE,
+      ),
+
+    ),
+      'unique keys' => array(
+      'UUID' => array('UUID'),
+    ),
+
+    'primary key' => array(
+      'flid',
+    ),
+  );
+
+  return $schema;
+}

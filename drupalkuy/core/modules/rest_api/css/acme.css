@@ -1,0 +1,90 @@
+.acme-hello-text {
+  background-color: red;
+}
+
+.headerStyle{
+  border-bottom:1px solid #ccc;
+}
+
+.thead-style{
+    background-color: #ddd;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+section.flat button {
+  color: #fff;
+  background-color: #6496c8;
+  text-shadow: -1px 1px #417cb8;
+  border: none;
+  width: 120px;
+  height: 30px;
+}
+
+section.flat button:hover,
+section.flat button.hover {
+  background-color: #346392;
+  text-shadow: -1px 1px #27496d;
+}
+
+section.flat button:active,
+section.flat button.active {
+  background-color: #27496d;
+  text-shadow: -1px 1px #193047;
+}
+
+section.operation button {
+  color: #fff;
+  border: none;
+  width: 60px;
+  height: 24px;
+}
+
+section.flat button:hover,
+section.flat button.hover {
+  background-color: #346392;
+  text-shadow: -1px 1px #27496d;
+}
+
+section.flat button:active,
+section.flat button.active {
+  background-color: #27496d;
+  text-shadow: -1px 1px #193047;
+}
+
+section.operation button.edit {
+  background-color: #f1d308;
+  text-shadow: -1px 1px #f1d308;
+}
+
+section.operation button.delete {
+  background-color: #f10808;
+  text-shadow: -1px 1px #f10808;
+}
+
+section.flat2 button {
+  color: #fff;
+  background-color: #6496c8;
+  text-shadow: -1px 1px #417cb8;
+  border: none;
+  width: 60px;
+  height: 30px;
+  font-size: 13px;
+
+}
+
+section.flat2 button:hover,
+section.flat2 button.hover {
+  background-color: #346392;
+  text-shadow: -1px 1px #27496d;
+}
+
+section.flat2 button:active,
+section.flat2 button.active {
+  background-color: #27496d;
+  text-shadow: -1px 1px #193047;
+}
+
+.textareaStyle { width: 100%; height: 85px }
+.boldTitle { font-size:14px}
+.emStyle{font-size:11px}

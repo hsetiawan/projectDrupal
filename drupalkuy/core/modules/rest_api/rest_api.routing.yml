@@ -1,0 +1,75 @@
+rest_api:
+    path: /rest/api
+    defaults:
+        _controller: Drupal\rest_api\Controller\RestApiController::restapi
+    requirements:
+        _permission: 'access content'
+
+rest_api.addForm:
+    path: /rest/api/addForm
+    defaults:
+        _controller: Drupal\rest_api\Controller\RestApiController::restapiAddForm
+    requirements:
+        _permission: 'access content'
+
+
+rest_api.editForm:
+    path: /rest/api/editForm/{value}
+    defaults:
+        _controller: Drupal\rest_api\Controller\RestApiController::restapiEditForm
+    requirements:
+        _permission: 'access content'
+
+
+
+rest_api.list:
+    path: /rest/api/list
+    defaults:
+        _title: 'List Data'
+        _controller: Drupal\rest_api\Controller\RestApiController::restapiList
+    methods : [GET]
+    requirements:
+        _permission: 'access content'
+        _access: 'TRUE'
+        _format: 'json|hal_json'
+
+
+rest_api.add:
+    path: '/rest/api/add'
+    defaults: { _title: 'Add Data', _controller: 'Drupal\rest_api\Controller\RestApiController::restapiAdd'  }
+    methods : [POST]
+    requirements:
+        _permission: 'access content'
+        _access: 'TRUE'
+        #_format: 'json|hal_json'
+
+
+rest_api.edit:
+    path: /rest/api/{value}/edit
+    defaults: { _title: 'Edit Data', _controller: 'Drupal\rest_api\Controller\RestApiController::restapiEdit'  }
+    methods : [PATCH]
+    requirements:
+        _permission: 'access content'
+        _access: 'TRUE'
+
+
+
+rest_api.detail:
+    path: /rest/api/{value}/detail
+    defaults: { _title: 'Detail Data', _controller: 'Drupal\rest_api\Controller\RestApiController::restapiDetail'  }
+    methods : [POST]
+    requirements:
+        _permission: 'access content'
+        _access: 'TRUE'
+        _format: 'json|hal_json'
+
+
+
+
+rest_api.delete:
+    path: /rest/api/{value}/delete
+    defaults: { _title: 'Delete Data', _controller: 'Drupal\rest_api\Controller\RestApiController::restapiDelete'  }
+    methods: [DELETE]
+    requirements:
+        _permission: 'access content'
+        _format: 'json|hal_json'

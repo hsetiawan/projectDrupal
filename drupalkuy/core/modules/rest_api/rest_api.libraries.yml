@@ -1,0 +1,9 @@
+rest_api-styles:
+  version: 8.0.0
+  header: true
+  css:
+    base:
+      css/acme.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

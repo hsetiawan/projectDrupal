@@ -1,0 +1,21 @@
+<?php
+
+function rest_api_theme() {
+    $theme['hello_page'] = [
+      'variables' => ['name' => NULL],
+      'template' => 'list'
+    ];
+
+    $theme['add_page'] = [
+      'variables' => ['maxSize' => NULL],
+      'template' => 'add'
+    ];
+
+    $theme['edit_page'] = [
+      'variables' => ['maxSize' => NULL,'value' => NULL,'urlFiles' => NULL],
+      'template' => 'edit'
+    ];
+
+
+    return $theme;
+}
